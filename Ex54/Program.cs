@@ -40,22 +40,20 @@ void PrintMassive(int[,] table)
 
 int[,] NewDoubleMassive2(int[,] table)
 {
-    
+
     for (int i = 0; i < table.GetLength(0); i++)
     {
-        for (int j = 0; j < table.GetLength(1) - 1; j++)
+        for (int j = 0; j < table.GetLength(1) ; j++)
         {
-          
-
-               int number = 0;
-               for (int l = 0; l < lineinmassive; l++)
+               for (int l = j; l <  table.GetLength(1) ; l++)
                {
-                if(table[i,j] < table[i,j+1])
+                if(table[i,j] < table[i,l])
                 {
+                     var number = 0;
 
                     number = table[i,j];
-                    table[i,j] = table[i,j+1];
-                    table[i,j+1] = number;
+                    table[i,j] = table[i,l];
+                    table[i,l] = number;
                 }
                }
 
@@ -73,6 +71,8 @@ int[,] NewDoubleMassive2(int[,] table)
             //Console.Write($" {table[i,j]} ");
         }
     }
+    Console.WriteLine("");
+    Console.WriteLine("Массив с сортировкой в каждой строке от большего числа к меньшему равен: ");
     Console.WriteLine("");
 
     return table;
