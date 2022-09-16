@@ -56,19 +56,6 @@ int[,] NewDoubleMassive2(int[,] table)
                     table[i,l] = number;
                 }
                }
-
-            //  int number = 0;
-            //    for (int l = 0; table[i,j] < table[i,j+1]; l++)
-            //    {
-            //     if(table[i,j] < table[i,j+1])
-            //     {
-
-            //         number = table[i,j];
-            //         table[i,j] = table[i,j+1];
-            //         table[i,j+1] = number;
-            //     }
-            //    }
-            //Console.Write($" {table[i,j]} ");
         }
     }
     Console.WriteLine("");
