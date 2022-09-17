@@ -11,7 +11,7 @@ if (!line || !column || columninmassive < 1 || lineinmassive < 1)
 int[,] doublemassive = new int[lineinmassive, columninmassive];
 int[,] resultmassive = NewDoubleMassive(doublemassive);
 PrintMassive(resultmassive);
-PrintMassive(NewDoubleMassive2(resultmassive));
+Console.WriteLine($"Строка с наименьшей суммой = {NewDoubleMassive2(resultmassive)}");
 
 int[,] NewDoubleMassive(int[,] table)
 {
@@ -19,7 +19,7 @@ int[,] NewDoubleMassive(int[,] table)
     {
         for (int j = 0; j < table.GetLength(1); j++)
         {
-            table[i, j] = new Random().Next(1, 100);
+            table[i, j] = new Random().Next(1, 10);
         }
     }
     return table;
@@ -29,40 +29,37 @@ void PrintMassive(int[,] table)
 {
     for (int i = 0; i < table.GetLength(0); i++)
     {
+        int sum = 0;
         Console.Write("[");
         for (int j = 0; j < table.GetLength(1); j++)
         {
+             sum += table[i, j];
             Console.Write($"  {table[i, j]}  ");
         }
-        Console.WriteLine("]");
+        Console.Write("]");
+        Console.WriteLine($" Сумма строки = {sum}");
+
     }
 }
 
-int[,] NewDoubleMassive2(int[,] table)
+int NewDoubleMassive2(int[,] table)
 {
-
+    int[] mass = new int[table.GetLength(1)];
+    int min=int.MaxValue;
+    int index = 0;
     for (int i = 0; i < table.GetLength(0); i++)
     {
-        for (int j = 0; j < table.GetLength(1) ; j++)
+        int sum = 0;
+        for (int j = 0; j < table.GetLength(1); j++)
         {
-               for (int l = j; l <  table.GetLength(1) ; l++)
-               {
-                if(table[i,j] < table[i,l])
-                {
-                     var number = 0;
-
-                    number = table[i,j];
-                    table[i,j] = table[i,l];
-                    table[i,l] = number;
-                }
-               }
-          
+            sum += table[i, j];
+        }
+        if (sum < min)
+        {
+            min = sum;
+            index = i + 1;
         }
     }
-    Console.WriteLine("");
-    Console.WriteLine("Массив с сортировкой в каждой строке от большего числа к меньшему равен: ");
-    Console.WriteLine("");
-
-    return table;
+    return index;
 }
 
